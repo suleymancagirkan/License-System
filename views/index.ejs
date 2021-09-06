@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <title>zRooter License sistemi</title>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
+    <!-- Boostrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <% 
+    let lisanslar = [];
+    client.connection.query("SELECT * FROM lisanslar", function (err, result, fields) {
+        if (err) throw err;
+        
+        result.map(s => {
+            lisanslar.push(s);
+        })
+    }) 
+    %>
+    <body class="arkaplan">
+        <center>
+            <div class="container">
+                <div class="row">
+                <div class="col col-sm">
+                    <div class="title">API Hakkında</div>
+                    <p>
+                        <br>
+                        API Sürüm: v1
+                        <br>
+                        Discord Tag: <%= client.user.tag %>
+                        <br>
+                    </p>
+                </div>
+                <div class="col col-sm">
+                    <div class="title">Lisans kontrol etme</div>
+                    <p>
+                        <br>
+                        Belirli bir adresdeki lisansları kontrol etmek için
+                        <div class="link" onclick="window.location = '/api/lisans/type=KONTROL&ip=IPAdresi'">/api/lisans/type=KONTROL&ip=IPAdresi</div>
+                        adresine gidiniz.
+                        <br>
+                        <br>
+                        Tüm lisansları ve adreslerini kontrol etmek için
+                        <div class="link" onclick="window.location = '/api/lisans/type=KONTROL'">/api/lisans/type=KONTROL</div>
+                        adresine gidiniz
+                    </p>
+                </div>
+            </div>
+        </center>
+    </body>
+    <style>
+        * {
+            margin: 0;
+        }
+        .arkaplan {
+            background-color: rgb(170, 163, 163);
+        }
+        .col {
+            margin: 0 auto;
+            margin-top: 3%;
+            background-color: rgb(58, 55, 55);
+            color: white;
+            border-radius: 50px;
+            height: 400px;
+            margin-right: 3%;
+            margin-left: 3%;
+            transition: all 2s;
+        }
+        .col:hover {
+            transform: scale(1.1);
+            transition: all 2s;
+        }
+        .col .title {
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .link {
+            color: rgb(0, 0, 255);
+            cursor: pointer;
+        }
+        .link:hover {
+            text-decoration: underline;
+            transition: all 1s;
+        }
+        @media screen and (max-width: 1000px) {
+            .col .title {
+                text-decoration: underline;
+                font-weight: bold;
+                font-size: 13px;
+                font-family: 'Poppins', sans-serif;
+            }
+            .col:hover {
+                transform: scale(1.05);
+                transition: all 2s;
+            }
+        }
+    </style>
+</html>
