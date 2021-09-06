@@ -24,7 +24,7 @@ client.commands = new Discord.Collection();
 client.connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "123gulen",
+    password: "password",
     database: "license"
 })
 client.connection.connect(function(err) {
